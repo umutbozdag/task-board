@@ -170,6 +170,7 @@ export default {
         };
 
         console.log("todo", todo);
+        // o anki kullanicinin array elementini guncelleme
         currentUserDocRef
           .update({
             todos: firebase.firestore.FieldValue.arrayUnion(todo),

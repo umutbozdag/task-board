@@ -30,7 +30,7 @@
 
         <column title="In progress">
           <draggable
-            id="in-progress"
+            id="inProgress"
             class="list-group"
             :list="currentUserData.inProgress"
             @change="log"
@@ -180,22 +180,6 @@ export default {
   data() {
     return {
       currentSelectedTask: null,
-      // list1: [
-      //   { name: "John", id: 1 },
-      //   { name: "Joao", id: 2 },
-      //   { name: "Jean", id: 3 },
-      //   { name: "Gerard", id: 4 },
-      // ],
-      // list2: [
-      //   { name: "Juan", id: 5 },
-      //   { name: "Edgard", id: 6 },
-      //   { name: "Johnson", id: 7 },
-      // ],
-      // list3: [
-      //   { name: "Juan", id: 8 },
-      //   { name: "Edgard", id: 9 },
-      //   { name: "Johnson", id: 10 },
-      // ],
     };
   },
   computed: {
@@ -203,15 +187,14 @@ export default {
   },
   methods: {
     handleOnClickedOnTaskUpdate(task) {
-      if (task.state === "todo") {
-        let taskIdx = this.currentUserData.todos.findIndex(
-          (x) => x?.id === task?.id
-        );
-        if (taskIdx > -1) {
-          delete this.currentUserData[taskIdx];
-          this.$set(this.currentUserData.todos, taskIdx, task);
-          this.updateCurrentUsersTasks();
-        }
+      // task.state = todos, inProgress...
+      let taskIdx = this.currentUserData[task.state].findIndex(
+        (x) => x.id === task.id
+      );
+      if (taskIdx > -1) {
+        delete this.currentUserData[taskIdx];
+        this.$set(this.currentUserData[task.state], taskIdx, task);
+        this.updateCurrentUsersTasks();
       }
     },
     handleOnClickedEdit(task) {
@@ -235,39 +218,13 @@ export default {
       console.log("event", event);
       let itemId = event.item.getAttribute("itemid");
 
-      if (event.to.id === "in-progress") {
-        let idx = this.currentUserData.inProgress.findIndex(
-          (x) => x.id === itemId
-        );
+      // event.to.id = todos, inProgress, revision...
+      let idx = this.currentUserData[event.to.id].findIndex(
+        (x) => x.id === itemId
+      );
 
-        if (idx > -1) {
-          this.currentUserData.inProgress[idx].state = "inProgress";
-        }
-
-        // this.$set(this.currentUserData.todos, taskIdx, task);
-      } else if (event.to.id === "revision") {
-        let idx = this.currentUserData.revision.findIndex(
-          (x) => x.id === itemId
-        );
-        if (idx > -1) {
-          this.currentUserData.revision[idx].state = "revision";
-        }
-      } else if (event.to.id === "check") {
-        let idx = this.currentUserData.check.findIndex((x) => x.id === itemId);
-        if (idx > -1) {
-          this.currentUserData.check[idx].state = "check";
-        }
-      } else if (event.to.id === "done") {
-        let idx = this.currentUserData.done.findIndex((x) => x.id === itemId);
-        if (idx > -1) {
-          this.currentUserData.done[idx].state = "done";
-        }
-      } else if (event.to.id === "todos") {
-        let idx = this.currentUserData.todos.findIndex((x) => x.id === itemId);
-        console.log("todos IDX", idx);
-        if (idx > -1) {
-          this.currentUserData.todos[idx].state = "todo";
-        }
+      if (idx > -1) {
+        this.currentUserData[event.to.id][idx].state = event.to.id;
       }
     },
     log(evt) {
@@ -304,5 +261,10 @@ export default {
 }
 
 .columns {
+  display: flex;
+}
+
+.list-group {
+  height: 500px;
 }
 </style>

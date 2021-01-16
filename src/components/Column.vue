@@ -20,7 +20,7 @@ export default {
 <style lang="scss">
 .column {
   height: 700px;
-  width: 300px;
+  width: 280px;
   overflow-y: auto;
   background: #c9c9c9;
   border-radius: 6px;
