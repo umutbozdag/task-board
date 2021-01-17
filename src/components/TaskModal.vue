@@ -59,7 +59,7 @@
         <div class="col-lg-4">
           <input
             type="text"
-            placeholder="5 gun"
+            :placeholder="taskEstimatedDate"
             disabled
             class="form-control"
           />
@@ -110,15 +110,36 @@ export default {
       type: Object,
     },
   },
+
+  // include holidays (saturday, sunday)
+  // include task desc length and task name length
   data() {
     return {
       priorities: null,
       taskCreateDate: this.dateOfToday,
+      taskEstimatedDate: null,
       taskName: null,
       taskDesc: null,
       taskNotes: null,
+      workingDaysTotal: 5,
       status: "new",
     };
+  },
+  watch: {
+    taskName(newVal) {
+      if (newVal && this.taskDesc) {
+        this.calculateTaskEstimatedDate();
+      } else {
+        this.taskEstimatedDate = null;
+      }
+    },
+    taskDesc(newVal) {
+      if (newVal && this.taskName) {
+        this.calculateTaskEstimatedDate();
+      } else {
+        this.taskEstimatedDate = null;
+      }
+    },
   },
   computed: {
     ...mapGetters(["currentUser", "currentUserData"]),
@@ -128,6 +149,20 @@ export default {
   },
   methods: {
     ...mapMutations(["setCurrentUserDataHandler"]),
+    calculateTaskEstimatedDate() {
+      this.taskEstimatedDate = Math.floor(
+        (this.taskDesc.split(" ").length + this.taskName.split(" ").length) /
+          this.workingDaysTotal
+      );
+      let date = new Date(this.taskCreateDate);
+      this.taskEstimatedDate = date.setDate(
+        date.getDate() + this.taskEstimatedDate
+      );
+
+      this.taskEstimatedDate = new Date(
+        this.taskEstimatedDate
+      ).toLocaleDateString();
+    },
     updateTask() {
       this.$emit("clicked-on-update", {
         taskCreateDate: this.taskCreateDate,
@@ -166,10 +201,9 @@ export default {
           taskNotes: this.taskNotes,
           taskCreateDate: this.taskCreateDate,
           id: uuidv4(),
-          state: "todo",
+          state: "todos",
         };
 
-        console.log("todo", todo);
         // o anki kullanicinin array elementini guncelleme
         currentUserDocRef
           .update({

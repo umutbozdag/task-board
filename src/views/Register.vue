@@ -7,6 +7,7 @@
             <label for="exampleInputEmail1">First name</label>
             <input
               type="text"
+              id="name"
               class="form-control"
               v-model="name"
               placeholder="First name"
@@ -18,6 +19,7 @@
             <label for="exampleInputEmail1">Last name</label>
             <input
               type="text"
+              id="last-name"
               class="form-control"
               v-model="lastName"
               placeholder="Last name"
@@ -30,7 +32,7 @@
         <input
           type="email"
           class="form-control"
-          id="exampleInputEmail1"
+          id="exampleInputEmail"
           aria-describedby="emailHelp"
           v-model="email"
           placeholder="Enter email"
@@ -65,7 +67,11 @@
         <input type="checkbox" class="form-check-input" id="exampleCheck1" />
         <label class="form-check-label" for="exampleCheck1">Check me out</label>
       </div> -->
-      <button type="submit" class="btn btn-primary btn-block mt-3">
+      <button
+        type="submit"
+        class="btn btn-primary btn-block mt-3"
+        id="submit-btn"
+      >
         Submit
       </button>
       <router-link to="/login">Login</router-link>
@@ -91,7 +97,12 @@ export default {
   methods: {
     ...mapActions(["createUser"]),
     handleOnSubmit() {
-      if (this.password === this.passwordAgain) {
+      if (
+        this.password === this.passwordAgain &&
+        this.email &&
+        this.name &&
+        this.lastName
+      ) {
         this.createUser({
           email: this.email,
           password: this.password,
@@ -100,6 +111,13 @@ export default {
         }).then((response) => {
           this.$router.push({ name: "Home" });
           console.log("response", response);
+        });
+      } else {
+        this.$notify({
+          group: "notification",
+          title: "Error",
+          type: "error",
+          text: "Check passwords and fill all the empty fields",
         });
       }
     },

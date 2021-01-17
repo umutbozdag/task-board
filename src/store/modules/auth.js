@@ -1,4 +1,5 @@
 import firebase from "firebase";
+import Vue from "vue";
 
 const auth = {
   state: {
@@ -43,6 +44,11 @@ const auth = {
           console.log(err);
           var errorCode = err.code;
           var errorMessage = err.message;
+          Vue.notify({
+            group: "notification",
+            title: "Error",
+            text: err.message,
+          });
         });
     },
 
@@ -52,6 +58,13 @@ const auth = {
         .signInWithEmailAndPassword(payload.email, payload.password)
         .then((user) => {
           commit("setCurrentUserHandler", user.user);
+        })
+        .catch((err) => {
+          Vue.notify({
+            group: "notification",
+            title: "Error",
+            text: err.message,
+          });
         });
     },
   },

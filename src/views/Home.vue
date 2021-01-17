@@ -24,6 +24,13 @@
               >
                 Edit
               </button>
+
+              <button
+                class="btn btn-danger"
+                @click="handleOnClickedRemove(todo)"
+              >
+                X
+              </button>
             </div>
           </draggable>
         </column>
@@ -49,6 +56,13 @@
                 @click="handleOnClickedEdit(todo)"
               >
                 Edit
+              </button>
+
+              <button
+                class="btn btn-danger"
+                @click="handleOnClickedRemove(todo)"
+              >
+                X
               </button>
             </div>
           </draggable>
@@ -76,6 +90,13 @@
               >
                 Edit
               </button>
+
+              <button
+                class="btn btn-danger"
+                @click="handleOnClickedRemove(todo)"
+              >
+                X
+              </button>
             </div>
           </draggable>
         </column>
@@ -101,6 +122,12 @@
                 @click="handleOnClickedEdit(todo)"
               >
                 Edit
+              </button>
+              <button
+                class="btn btn-danger"
+                @click="handleOnClickedRemove(todo)"
+              >
+                X
               </button>
             </div>
           </draggable>
@@ -128,26 +155,16 @@
               >
                 Edit
               </button>
+
+              <button
+                class="btn btn-danger"
+                @click="handleOnClickedRemove(todo)"
+              >
+                X
+              </button>
             </div>
           </draggable>
         </column>
-
-        <!-- <column title="Revision">
-          <draggable
-            class="list-group"
-            :list="list3"
-            group="people"
-            @change="log"
-          >
-            <div
-              class="list-group-item"
-              v-for="(element, index) in list2"
-              :key="element.name"
-            >
-              {{ element.name }} {{ index }}
-            </div>
-          </draggable>
-        </column> -->
       </div>
     </div>
     <button
@@ -186,8 +203,19 @@ export default {
     ...mapGetters(["currentUserData", "currentUser"]),
   },
   methods: {
+    handleOnClickedRemove(task) {
+      let taskIdx = this.currentUserData[task.state].findIndex(
+        (x) => x.id === task.id
+      );
+      if (taskIdx > -1) {
+        this.currentUserData[task.state].splice(taskIdx, 1);
+        // this.$(this.currentUserData[task.state], taskIdx, task);
+        this.updateCurrentUsersTasks();
+      }
+    },
     handleOnClickedOnTaskUpdate(task) {
       // task.state = todos, inProgress...
+      console.log(task);
       let taskIdx = this.currentUserData[task.state].findIndex(
         (x) => x.id === task.id
       );

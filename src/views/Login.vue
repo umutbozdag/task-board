@@ -30,11 +30,12 @@
       <button
         @click="handleOnSubmit"
         type="submit"
+        id="login-btn"
         class="btn btn-primary btn-block mt-3"
       >
         Login
       </button>
-      <router-link to="/register">Register</router-link>
+      <router-link to="/register" id="register-btn">Register</router-link>
     </form>
   </div>
 </template>
@@ -52,12 +53,21 @@ export default {
   methods: {
     ...mapActions(["signIn"]),
     handleOnSubmit() {
-      this.signIn({ email: this.email, password: this.password }).then(
-        (user) => {
-          console.log("login/user", user);
-          this.$router.push({ name: "Home" });
-        }
-      );
+      if (this.email && this.password) {
+        this.signIn({ email: this.email, password: this.password }).then(
+          (user) => {
+            console.log("login/user", user);
+            this.$router.push({ name: "Home" });
+          }
+        );
+      } else {
+        this.$notify({
+          group: "notification",
+          title: "Error",
+          type: "error",
+          text: "Fill all the empty fields",
+        });
+      }
     },
   },
 };

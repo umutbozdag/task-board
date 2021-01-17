@@ -5,10 +5,12 @@ import store from "./store";
 import db from "@/database";
 import firebase from "firebase";
 import VModal from "vue-js-modal";
+import Notifications from "vue-notification";
 
 Vue.config.productionTip = false;
 
 Vue.use(VModal);
+Vue.use(Notifications);
 
 firebase.auth().onAuthStateChanged(async (user) => {
   console.log(user);
