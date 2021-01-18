@@ -1,8 +1,10 @@
+<style scoped src="@/assets/styles/Home.css">
+</style>
 <template>
   <div class="home-container">
     <div class="home" v-if="currentUserData">
       <div class="row columns">
-        <column title="Todo">
+        <column title="Todo" class="taskColumn">
           <draggable
             id="todos"
             class="list-group"
@@ -12,7 +14,7 @@
             @add="handleOnAdd"
           >
             <div
-              class="list-group-item"
+              class="list-group-item todoTask"
               v-for="(todo, index) in currentUserData.todos"
               :itemid="todo.id"
               :key="index"
@@ -35,7 +37,7 @@
           </draggable>
         </column>
 
-        <column title="In progress">
+        <column title="In progress" class="taskColumn">
           <draggable
             id="inProgress"
             class="list-group"
@@ -45,7 +47,7 @@
             @add="handleOnAdd"
           >
             <div
-              class="list-group-item"
+              class="list-group-item inProgTask"
               v-for="(todo, index) in currentUserData.inProgress"
               :key="todo.taskName"
               :itemid="todo.id"
@@ -68,7 +70,7 @@
           </draggable>
         </column>
 
-        <column title="Revision">
+        <column title="Revision" class="taskColumn">
           <draggable
             id="revision"
             class="list-group"
@@ -78,7 +80,7 @@
             @add="handleOnAdd"
           >
             <div
-              class="list-group-item"
+              class="list-group-item revTask"
               v-for="(todo, index) in currentUserData.revision"
               :key="todo.taskName"
               :itemid="todo.id"
@@ -101,7 +103,7 @@
           </draggable>
         </column>
 
-        <column title="Check">
+        <column title="Check" class="taskColumn">
           <draggable
             id="check"
             class="list-group"
@@ -111,7 +113,7 @@
             @add="handleOnAdd"
           >
             <div
-              class="list-group-item"
+              class="list-group-item checkTask"
               v-for="(todo, index) in currentUserData.check"
               :key="todo.taskName"
               :itemid="todo.id"
@@ -133,7 +135,7 @@
           </draggable>
         </column>
 
-        <column title="Done">
+        <column title="Done" class="taskColumn">
           <draggable
             id="done"
             class="list-group"
@@ -143,7 +145,7 @@
             @add="handleOnAdd"
           >
             <div
-              class="list-group-item"
+              class="list-group-item doneTask"
               v-for="(todo, index) in currentUserData.done"
               :key="todo.taskName"
               :itemid="todo.id"
@@ -262,37 +264,3 @@ export default {
   },
 };
 </script>
-<style lang="scss">
-.column {
-  margin-right: 24px;
-}
-
-.home-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  background-color: whitesmoke;
-}
-
-.home {
-  height: 100%;
-  padding: 40px;
-}
-
-.list-group-item {
-  margin-bottom: 12px;
-  box-shadow: 1px 1px 4px 0px rgba(0, 0, 0, 0.75);
-}
-
-.add-todo-button {
-}
-
-.columns {
-  display: flex;
-}
-
-.list-group {
-  height: 500px;
-}
-</style>

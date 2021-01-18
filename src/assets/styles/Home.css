@@ -1,0 +1,61 @@
+.column {
+    margin-right: 30px;
+  }
+  
+.home-container {
+  
+  background-color: whitesmoke;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.home {
+  height: 100%;
+  padding: 40px;
+}
+
+.todoTask {
+  margin-bottom: 12px;
+  border-left: solid #FFB8D6 4px ;
+  box-shadow: 1px 1px 1px 0px rgba(0, 0, 0, 0.4);
+}
+
+.inProgTask {
+  margin-bottom: 12px;
+  border-left: solid #B49EFF 4px ;
+  box-shadow: 1px 1px 1px 0px rgba(0, 0, 0, 0.4);
+}
+
+.revTask {
+  margin-bottom: 12px;
+  border-left: solid #FFCB9E 4px ;
+  box-shadow: 1px 1px 1px 0px rgba(0, 0, 0, 0.4);
+}
+
+.checkTask {
+  margin-bottom: 12px;
+  border-left: solid #78E9FF 4px ;
+  box-shadow: 1px 1px 1px 0px rgba(0, 0, 0, 0.4);
+}
+
+.doneTask{
+  margin-bottom: 12px;
+  border-left: solid #4BFF8E 4px ;
+  box-shadow: 1px 1px 1px 0px rgba(0, 0, 0, 0.4);
+}
+
+.columns {
+  display: flex;
+}
+
+.taskColumn{
+  background-color: rgba(141,216,248, 0.15);
+  box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.4) inset;
+  border-radius: 15px;
+}
+
+.list-group {
+  height: 500px;
+}

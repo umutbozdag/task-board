@@ -15,3 +15,7 @@ body {
   padding: 0;
 }
 </style>
+
+<style>
+  @import './assets/styles/Home.css';
+</style>
