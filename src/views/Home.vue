@@ -1,5 +1,4 @@
-<style scoped src="@/assets/styles/Home.css">
-</style>
+<style scoped src="@/assets/styles/Home.css"></style>
 <template>
   <div class="home-container">
     <div class="home" v-if="currentUserData">
@@ -175,6 +174,7 @@
     >
       Add todo
     </button>
+    <button @click="logoutUser">Logout</button>
     <task-modal
       :selected-task="currentSelectedTask"
       @modal-closed="currentSelectedTask = null"
@@ -186,8 +186,9 @@
 import draggable from "vuedraggable";
 import Column from "@/components/Column";
 import TaskModal from "@/components/TaskModal";
-import { mapGetters } from "vuex";
+import { mapGetters, mapMutations } from "vuex";
 import db from "@/database";
+import firebase from "firebase";
 
 export default {
   name: "Home",
@@ -205,6 +206,20 @@ export default {
     ...mapGetters(["currentUserData", "currentUser"]),
   },
   methods: {
+    ...mapMutations(["setCurrentUserHandler", "setCurrentUserDataHandler"]),
+    logoutUser() {
+      firebase
+        .auth()
+        .signOut()
+        .then(() => {
+          this.setCurrentUserHandler(null);
+          this.setCurrentUserDataHandler(null);
+          // Sign-out successful.
+        })
+        .catch((error) => {
+          // An error happened.
+        });
+    },
     handleOnClickedRemove(task) {
       let taskIdx = this.currentUserData[task.state].findIndex(
         (x) => x.id === task.id
