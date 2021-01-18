@@ -4,7 +4,8 @@
   <div class="home-container">
     <div class="home" v-if="currentUserData">
       <div class="row columns">
-        <column title="Todo" class="taskColumn">
+        <column class="taskColumn">
+          <h3 id="taskCol">ToDo  <i class="fas fa-clipboard-list"></i></h3>
           <draggable
             id="todos"
             class="list-group"
@@ -37,7 +38,9 @@
           </draggable>
         </column>
 
-        <column title="In progress" class="taskColumn">
+        <column class="taskColumn">
+          <h3 id="taskCol">In Progress  <i class="fas fa-spinner"></i></h3>
+
           <draggable
             id="inProgress"
             class="list-group"
@@ -70,7 +73,9 @@
           </draggable>
         </column>
 
-        <column title="Revision" class="taskColumn">
+        <column class="taskColumn">
+          <h3 id="taskCol">Revision  <i class="fab fa-rev"></i></h3>
+
           <draggable
             id="revision"
             class="list-group"
@@ -103,7 +108,9 @@
           </draggable>
         </column>
 
-        <column title="Check" class="taskColumn">
+        <column class="taskColumn">
+          <h3 id="taskCol">Check  <i class="fas fa-user-check"></i></h3>
+
           <draggable
             id="check"
             class="list-group"
@@ -135,7 +142,9 @@
           </draggable>
         </column>
 
-        <column title="Done" class="taskColumn">
+        <column class="taskColumn">
+          <h3 id="taskCol">Done  <i class="fas fa-check-double"></i></h3>
+
           <draggable
             id="done"
             class="list-group"
