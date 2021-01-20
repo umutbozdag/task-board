@@ -14,7 +14,9 @@
           <input
             v-model="taskName"
             type="text"
+            required
             placeholder="Task name"
+            id="task-name-input"
             class="form-control"
           />
         </div>
@@ -34,7 +36,7 @@
           <textarea
             v-model="taskNotes"
             name=""
-            id=""
+            id="task-notes-input"
             class="form-control"
             placeholder="Task notes"
           ></textarea>
@@ -44,9 +46,9 @@
       <div class="row mt-3 mb-3">
         <div class="col-lg-12">
           <textarea
-            name=""
-            id=""
             v-model="taskDesc"
+            id="task-desc-input"
+            required
             class="form-control"
             placeholder="Task description"
           ></textarea>
@@ -57,6 +59,8 @@
           <date-pick v-model="taskCreateDate"></date-pick>
         </div>
         <div class="col-lg-4">
+          <label for="">Estimated date</label>
+
           <input
             type="text"
             :placeholder="taskEstimatedDate"
@@ -78,6 +82,7 @@
         v-if="status === 'new'"
         @click="createTask"
         class="btn btn-primary btn-block mt-4 col-12"
+        id="create-todo-btn"
       >
         Create
       </button>
@@ -126,6 +131,13 @@ export default {
     };
   },
   watch: {
+    taskCreateDate(newVal) {
+      if (newVal && this.taskDesc && this.taskName) {
+        this.calculateTaskEstimatedDate();
+      } else {
+        this.taskEstimatedDate = null;
+      }
+    },
     taskName(newVal) {
       if (newVal && this.taskDesc) {
         this.calculateTaskEstimatedDate();
@@ -164,15 +176,23 @@ export default {
       ).toLocaleDateString();
     },
     updateTask() {
-      this.$emit("clicked-on-update", {
-        taskCreateDate: this.taskCreateDate,
-        taskName: this.taskName,
-        taskDesc: this.taskDesc,
-        taskNotes: this.taskNotes,
-        id: this.selectedTask.id,
-        state: this.selectedTask.state,
-      });
-      this.$modal.hide("task-modal");
+      if (this.currentUser && this.taskName && this.taskDesc) {
+        this.$emit("clicked-on-update", {
+          taskCreateDate: this.taskCreateDate,
+          taskName: this.taskName,
+          taskDesc: this.taskDesc,
+          taskNotes: this.taskNotes,
+          id: this.selectedTask.id,
+          state: this.selectedTask.state,
+        });
+        this.$modal.hide("task-modal");
+      } else {
+        this.$notify({
+          text: "Fill all the required fields",
+          type: "error",
+          group: "notification",
+        });
+      }
     },
     handleOnOpened() {
       if (this.selectedTask) {
@@ -191,7 +211,7 @@ export default {
       this.$emit("modal-closed");
     },
     createTask() {
-      if (this.currentUser) {
+      if (this.currentUser && this.taskName && this.taskDesc) {
         let currentUserDocRef = db
           .collection("users")
           .doc(this.currentUser.uid);
@@ -215,8 +235,17 @@ export default {
               ...this.currentUserData,
               todos: [...this.currentUserData.todos, todo],
             });
+            this.taskDesc = null;
+            this.taskName = null;
+            this.taskNotes = null;
             this.$modal.hide("task-modal");
           });
+      } else {
+        this.$notify({
+          text: "Fill all the required fields",
+          type: "error",
+          group: "notification",
+        });
       }
     },
   },

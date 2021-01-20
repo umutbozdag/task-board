@@ -4,7 +4,7 @@
     <div class="home" v-if="currentUserData">
       <div class="row columns">
         <column class="taskColumn todo">
-          <h3 id="taskCol">ToDo  <i class="fas fa-clipboard-list"></i></h3>
+          <h3 id="taskCol">ToDo <i class="fas fa-clipboard-list"></i></h3>
           <draggable
             id="todos"
             class="list-group"
@@ -40,7 +40,7 @@
         </column>
 
         <column class="taskColumn inProg">
-          <h3 id="taskCol">In Progress  <i class="fas fa-spinner"></i></h3>
+          <h3 id="taskCol">In Progress <i class="fas fa-spinner"></i></h3>
 
           <draggable
             id="inProgress"
@@ -77,7 +77,7 @@
         </column>
 
         <column class="taskColumn rev">
-          <h3 id="taskCol">Revision  <i class="fab fa-rev"></i></h3>
+          <h3 id="taskCol">Revision <i class="fab fa-rev"></i></h3>
 
           <draggable
             id="revision"
@@ -107,14 +107,14 @@
                   @click="handleOnClickedRemove(todo)"
                 >
                   <i class="far fa-trash-alt"></i>
-              </button>
+                </button>
               </div>
             </div>
           </draggable>
         </column>
 
         <column class="taskColumn check">
-          <h3 id="taskCol">Check  <i class="fas fa-user-check"></i></h3>
+          <h3 id="taskCol">Check <i class="fas fa-user-check"></i></h3>
 
           <draggable
             id="check"
@@ -150,7 +150,7 @@
         </column>
 
         <column class="taskColumn done">
-          <h3 id="taskCol">Done  <i class="fas fa-check-double"></i></h3>
+          <h3 id="taskCol">Done <i class="fas fa-check-double"></i></h3>
 
           <draggable
             id="done"
@@ -191,6 +191,7 @@
     <button
       @click="$modal.show('task-modal')"
       class="add-todo-button btn btn-primary mt-3 btn-block mb-5"
+      id="add-task-btn"
     >
       <div class="addtaskIcon">
         <i class="fas fa-plus fa-2x"></i>
