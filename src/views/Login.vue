@@ -2,7 +2,7 @@
   <div class="register-form-container">
     <form class="register-form" @submit.prevent>
       <div class="form-group">
-        <label for="exampleInputEmail1">Email address</label>
+        <label for="exampleInputEmail1" class="mt-5">Email address</label>
         <input
           type="email"
           class="form-control"
@@ -15,8 +15,8 @@
           >We'll never share your email with anyone else.</small
         >
       </div>
-
-      <div class="mt-2">
+      
+      <div class="mt-4">
         <div class="form-group">
           <label for="exampleInputPassword1">Password</label>
           <input
@@ -27,15 +27,18 @@
           />
         </div>
       </div>
-      <button
-        @click="handleOnSubmit"
-        type="submit"
-        id="login-btn"
-        class="btn btn-primary btn-block mt-3"
-      >
-        Login
-      </button>
-      <router-link to="/register" id="register-btn">Register</router-link>
+      <div class="loginBtns mt-4">
+        <button
+          @click="handleOnSubmit"
+          type="submit"
+          id="login-btn"
+          class="btn btn-primary btn-block mt-3 btn-lg"
+        >
+          Login
+          <i class="fas fa-sign-in-alt"></i>
+        </button>
+        <router-link to="/register" id="register-btn">Register</router-link>
+     </div>
     </form>
   </div>
 </template>

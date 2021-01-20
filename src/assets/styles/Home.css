@@ -1,9 +1,12 @@
+h3{
+  margin-top: -15px;
+  margin-bottom: 1rem;
+  text-shadow: 0px 0px 1px black;}
 .column {
     margin-right: 30px;
   }
   
 .home-container {
-  
   background-color: whitesmoke;
   display: flex;
   justify-content: center;
@@ -16,34 +19,48 @@
   padding: 40px;
 }
 
+.list-group-item{
+  border-radius: 10px;
+}
+
 .todoTask {
+  transition: 0.5s;
   margin-bottom: 12px;
-  border-left: solid #FFB8D6 4px ;
+  border-left: solid #FFB8D6 6px ;
   box-shadow: 1px 1px 1px 0px rgba(0, 0, 0, 0.4);
+  word-wrap: break-word;
 }
 
 .inProgTask {
   margin-bottom: 12px;
-  border-left: solid #B49EFF 4px ;
+  border-left: solid #B49EFF 6px ;
   box-shadow: 1px 1px 1px 0px rgba(0, 0, 0, 0.4);
+  word-wrap: break-word;
+  transition: 0.5s;
 }
 
 .revTask {
   margin-bottom: 12px;
-  border-left: solid #FFCB9E 4px ;
+  border-left: solid #FFCB9E 6px ;
   box-shadow: 1px 1px 1px 0px rgba(0, 0, 0, 0.4);
+  word-wrap: break-word;
+  transition: 0.5s;
 }
 
 .checkTask {
   margin-bottom: 12px;
-  border-left: solid #78E9FF 4px ;
+  border-left: solid #78E9FF 6px ;
   box-shadow: 1px 1px 1px 0px rgba(0, 0, 0, 0.4);
+  word-wrap: break-word;
+  transition: 0.5s;
 }
 
 .doneTask{
   margin-bottom: 12px;
-  border-left: solid #4BFF8E 4px ;
+  border-left: solid #4BFF8E 6px ;
   box-shadow: 1px 1px 1px 0px rgba(0, 0, 0, 0.4);
+  word-wrap: break-word;
+  transition: 0.5s;
 }
 
 .columns {
@@ -54,6 +71,22 @@
   background-color: rgba(141,216,248, 0.15);
   box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.4) inset;
   border-radius: 15px;
+  height: 680px;
+}
+.todo:hover h3{
+  color:#FFB8D6;
+}
+.inProg:hover h3{
+  color:#B49EFF;
+}
+.rev:hover h3{
+  color:#FFCB9E;
+}
+.check:hover h3{
+  color:#78E9FF;
+}
+.done:hover h3{
+  color:#4BFF8E;
 }
 
 #taskCol{
@@ -61,5 +94,129 @@
 }
 
 .list-group {
-  height: 500px;
+  height: 600px;
 }
+
+.btnTask{
+  border-radius: 50px;
+  width: 40px;
+  height: 40px;
+  margin-right: 5px;
+  box-shadow: 1px 1px 1px 0px rgba(0, 0, 0, 0.4);
+}
+
+.btnsTask{
+  position: absolute;
+  margin: -12px 0px 0px 140px;
+  opacity: 0%;
+  z-index: 20;
+}
+
+.todoTask:hover > .btnsTask{
+  animation: blurIn 0.5s forwards ease-in-out;
+}
+.todoTask:hover {
+  transition: 0.5s;
+  margin-bottom: 35px;
+}
+
+.inProgTask:hover > .btnsTask{
+  animation: blurIn 0.8s forwards ease-in-out;
+}
+.inProgTask:hover {
+  transition: 0.5s;
+  margin-bottom: 35px;
+}
+
+.revTask:hover > .btnsTask{
+  animation: blurIn 0.8s forwards ease-in-out;
+}
+.revTask:hover {
+  transition: 0.5s;
+  margin-bottom: 35px;
+}
+
+.checkTask:hover > .btnsTask{
+  animation: blurIn 0.8s forwards ease-in-out;
+}
+.checkTask:hover {
+  transition: 0.5s;
+  margin-bottom: 35px;
+}
+
+.doneTask:hover > .btnsTask{
+  animation: blurIn 0.8s forwards ease-in-out;
+}
+.doneTask:hover {
+  transition: 0.5s;
+  margin-bottom: 35px;
+}
+
+@keyframes blurIn {
+  from {opacity: 0%;}
+  to {opacity: 100%;}
+}
+
+.add-todo-button{
+  text-align: left;
+  color:blanchedalmond;
+  width: 50px;
+  height: 50px;
+  top: 720px;
+  left: 130px;
+  position: absolute;
+  overflow: hidden;
+  border-radius: 50px;  
+  box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.4);
+  transition: all 0.25s cubic-bezier(0.310, -0.105, 0.430, 1.400);
+  transition-delay: 0.3s;
+}
+
+.addtaskIcon{
+  margin-top: 2px;
+  margin-left: -2px;
+}
+.add-todo-button:hover{
+  width: 160px;
+}
+.add-todo-button:hover span::before{
+  font-size: 20px;
+  font-weight: bold;
+  word-wrap: break-word;
+  content: " Add ToDo";
+}
+
+
+.logout-button{
+  text-align: right;
+  color:blanchedalmond;
+  width: 50px;
+  height: 50px;
+  top: 735px;
+  right: 160px;
+  position: absolute;
+  overflow: hidden;
+  border-radius: 50px;  
+  box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.4);
+  transition: all 0.25s cubic-bezier(0.310, -0.105, 0.430, 1.400);
+  transition-delay: 0.3s;
+}
+.logoutIcon{
+  margin-top: 2px;
+  margin-left: -6px;
+}
+.logout-button:hover{
+  width: 140px;
+}
+.logout-button:hover span::before{
+  font-size: 20px;
+  font-weight: bold;
+  word-wrap: break-word;
+  content: "Logout ";
+}
+.logout-button span{
+  padding-right: 10px;
+}
+
+
+

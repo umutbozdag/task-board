@@ -18,4 +18,5 @@ body {
 
 <style>
   @import './assets/styles/Home.css';
+  @import './assets/styles/Login.css';
 </style>

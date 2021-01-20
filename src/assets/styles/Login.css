@@ -1,0 +1,20 @@
+.register-form-container{
+    background-image: url("../test-01.png");
+    background-size: cover;
+    background-color: whitesmoke;
+}
+.register-form{
+    padding: 20px 10px 0px 10px;
+    width: 1100px;
+    height: 400px;
+    border-radius: 10px;
+    background-color: rgba(141,216,248, 0.9);
+    box-shadow: 1px 1px 3px 1px rgba(0, 0, 0, 0.4);
+}
+.loginBtns{
+    padding-left: 180px;
+}
+#register-btn{
+    margin-left: 10px;
+    color: red;
+}

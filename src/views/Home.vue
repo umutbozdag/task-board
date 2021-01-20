@@ -3,7 +3,7 @@
   <div class="home-container">
     <div class="home" v-if="currentUserData">
       <div class="row columns">
-        <column class="taskColumn">
+        <column class="taskColumn todo">
           <h3 id="taskCol">ToDo  <i class="fas fa-clipboard-list"></i></h3>
           <draggable
             id="todos"
@@ -20,24 +20,26 @@
               :key="index"
             >
               {{ todo.taskName }}
-              <button
-                class="btn btn-warning"
-                @click="handleOnClickedEdit(todo)"
-              >
-                Edit
-              </button>
+              <div class="btnsTask">
+                <button
+                  class="btn btn-warning btnTask"
+                  @click="handleOnClickedEdit(todo)"
+                >
+                  <i class="far fa-edit"></i>
+                </button>
 
-              <button
-                class="btn btn-danger"
-                @click="handleOnClickedRemove(todo)"
-              >
-                X
-              </button>
+                <button
+                  class="btn btn-danger btnTask"
+                  @click="handleOnClickedRemove(todo)"
+                >
+                  <i class="far fa-trash-alt"></i>
+                </button>
+              </div>
             </div>
           </draggable>
         </column>
 
-        <column class="taskColumn">
+        <column class="taskColumn inProg">
           <h3 id="taskCol">In Progress  <i class="fas fa-spinner"></i></h3>
 
           <draggable
@@ -55,24 +57,26 @@
               :itemid="todo.id"
             >
               {{ todo.taskName }}
-              <button
-                class="btn btn-warning"
-                @click="handleOnClickedEdit(todo)"
-              >
-                Edit
-              </button>
+              <div class="btnsTask">
+                <button
+                  class="btn btn-warning btnTask"
+                  @click="handleOnClickedEdit(todo)"
+                >
+                  <i class="far fa-edit"></i>
+                </button>
 
-              <button
-                class="btn btn-danger"
-                @click="handleOnClickedRemove(todo)"
-              >
-                X
-              </button>
+                <button
+                  class="btn btn-danger btnTask"
+                  @click="handleOnClickedRemove(todo)"
+                >
+                  <i class="far fa-trash-alt"></i>
+                </button>
+              </div>
             </div>
           </draggable>
         </column>
 
-        <column class="taskColumn">
+        <column class="taskColumn rev">
           <h3 id="taskCol">Revision  <i class="fab fa-rev"></i></h3>
 
           <draggable
@@ -90,24 +94,26 @@
               :itemid="todo.id"
             >
               {{ todo.taskName }}
-              <button
-                class="btn btn-warning"
-                @click="handleOnClickedEdit(todo)"
-              >
-                Edit
-              </button>
+              <div class="btnsTask">
+                <button
+                  class="btn btn-warning btnTask"
+                  @click="handleOnClickedEdit(todo)"
+                >
+                  <i class="far fa-edit"></i>
+                </button>
 
-              <button
-                class="btn btn-danger"
-                @click="handleOnClickedRemove(todo)"
-              >
-                X
+                <button
+                  class="btn btn-danger btnTask"
+                  @click="handleOnClickedRemove(todo)"
+                >
+                  <i class="far fa-trash-alt"></i>
               </button>
+              </div>
             </div>
           </draggable>
         </column>
 
-        <column class="taskColumn">
+        <column class="taskColumn check">
           <h3 id="taskCol">Check  <i class="fas fa-user-check"></i></h3>
 
           <draggable
@@ -125,23 +131,25 @@
               :itemid="todo.id"
             >
               {{ todo.taskName }}
-              <button
-                class="btn btn-warning"
-                @click="handleOnClickedEdit(todo)"
-              >
-                Edit
-              </button>
-              <button
-                class="btn btn-danger"
-                @click="handleOnClickedRemove(todo)"
-              >
-                X
-              </button>
+              <div class="btnsTask">
+                <button
+                  class="btn btn-warning btnTask"
+                  @click="handleOnClickedEdit(todo)"
+                >
+                  <i class="far fa-edit"></i>
+                </button>
+                <button
+                  class="btn btn-danger btnTask"
+                  @click="handleOnClickedRemove(todo)"
+                >
+                  <i class="far fa-trash-alt"></i>
+                </button>
+              </div>
             </div>
           </draggable>
         </column>
 
-        <column class="taskColumn">
+        <column class="taskColumn done">
           <h3 id="taskCol">Done  <i class="fas fa-check-double"></i></h3>
 
           <draggable
@@ -159,31 +167,42 @@
               :itemid="todo.id"
             >
               {{ todo.taskName }}
-              <button
-                class="btn btn-warning"
-                @click="handleOnClickedEdit(todo)"
-              >
-                Edit
-              </button>
+              <div class="btnsTask">
+                <button
+                  class="btn btn-warning btnTask"
+                  @click="handleOnClickedEdit(todo)"
+                >
+                  <i class="far fa-edit"></i>
+                </button>
 
-              <button
-                class="btn btn-danger"
-                @click="handleOnClickedRemove(todo)"
-              >
-                X
-              </button>
+                <button
+                  class="btn btn-danger btnTask"
+                  @click="handleOnClickedRemove(todo)"
+                >
+                  <i class="far fa-trash-alt"></i>
+                </button>
+              </div>
             </div>
           </draggable>
         </column>
       </div>
     </div>
+
     <button
       @click="$modal.show('task-modal')"
       class="add-todo-button btn btn-primary mt-3 btn-block mb-5"
     >
-      Add todo
+      <div class="addtaskIcon">
+        <i class="fas fa-plus fa-2x"></i>
+        <span></span>
+      </div>
     </button>
-    <button @click="logoutUser">Logout</button>
+    <button @click="logoutUser" class="logout-button btn-danger">
+      <div class="logoutIcon">
+        <span></span>
+        <i class="fas fa-sign-out-alt fa-2x"></i>
+      </div>
+    </button>
     <task-modal
       :selected-task="currentSelectedTask"
       @modal-closed="currentSelectedTask = null"
