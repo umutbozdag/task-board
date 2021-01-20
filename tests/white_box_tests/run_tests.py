@@ -7,9 +7,10 @@ from selenium.webdriver.chrome.options import Options
 chrome_options = Options()  
 # chrome_options.add_argument("--headless")  
 
+driver = webdriver.Chrome(ChromeDriverManager().install(), options=chrome_options)
 
-def login():
-  driver = webdriver.Chrome(ChromeDriverManager().install(), options=chrome_options)
+
+def login(without_close):
   driver.get("http://localhost:8080/login")
   sleep(3)
   email_input =  driver.find_element_by_id('exampleInputEmail1')
@@ -25,18 +26,17 @@ def login():
 
   sleep(3)
   success_page = "http://localhost:8080/"
-  
-  print(driver.current_url)
-  if(driver.current_url == success_page):
-    print('Login Testi Basarili')
-  else:
-    print('Login Testi Basarisiz :(')
 
-  driver.close()
+  print(driver.current_url)
+  if(without_close == False):
+    if(driver.current_url == success_page):
+      print('Login Testi Basarili')
+    else:
+      print('Login Testi Basarisiz :(')
+      driver.close()
 
 
 def register():
-  driver = webdriver.Chrome(ChromeDriverManager().install(), options=chrome_options)
 
   driver.get("http://localhost:8080/login")
 
@@ -58,13 +58,54 @@ def register():
 
   name_input.send_keys('umut')
   last_name_input.send_keys('bozdaG')
-  email_input.send_keys('hello@hotmail.com')
+  email_input.send_keys('helloqe@hotmail.com')
   password_input_1.send_keys('deneme123')
   password_input_2.send_keys('deneme123')
 
   sleep(1)
   submit_btn.click()
-  
+  sleep(3)
+  if(driver.current_url == 'http://localhost:8080/login'):
+    print('Register testi Başarısız (Butona basıldığında hata oluştu)')
+    driver.close()
+  driver.refresh()
+  sleep(3)
+  columns = driver.find_elements_by_class_name('column')
+  sleep(3)
+  print(columns)
+  if(len(columns) > 0):
+    print('Register testi Başarılı')
+  else:
+    print('Register testi Başarısız')
+  driver.close()
+
+def add_task():
+  login(without_close=True)
+  sleep(3)
+  print('add task here')
+  add_task_btn = driver.find_element_by_id('add-task-btn')
+
+  add_task_btn.click()
+  sleep(1)
+  task_name_input = driver.find_element_by_id('task-name-input')
+  task_desc_input = driver.find_element_by_id('task-desc-input')
+  task_notes_input = driver.find_element_by_id('task-notes-input')
+  create_todo_btn = driver.find_element_by_id('create-todo-btn')
+  todo_tasks_count_before = len(driver.find_elements_by_class_name('todoTask'))
+
+
+  task_name_input.send_keys('Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum lorem justo, lobortis in auctor id, ornare eu elit. Pellentesque nec metus dictum, vehicula dui id')
+  task_desc_input.send_keys('Phasellus porttitor ultrices mi at bibendum. Sed interdum rutrum orci, sit amet suscipit lectus sollicitudin sit amet.')
+  task_notes_input.send_keys('Vivamus at tincidunt elit. Ut dictum, odio a condimentum dapibus, nibh arcu convallis lorem')
+  create_todo_btn.click()
+  sleep(2)
+  if(len(driver.find_elements_by_class_name('todoTask')) > todo_tasks_count_before):
+    print('Task başarıyla Todo kolonuna eklenmiştir. add_task testi başarılı')
+  else:
+    print('add_task testi başarısız')
+
+
 
 # login()
-register()
+# register()
+add_task()
