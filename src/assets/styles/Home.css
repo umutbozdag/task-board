@@ -1,17 +1,19 @@
-h3{
+h3 {
   margin-top: -15px;
   margin-bottom: 1rem;
-  text-shadow: 0px 0px 1px black;}
+  text-shadow: 0px 0px 1px black;
+}
 .column {
-    margin-right: 30px;
-  }
-  
+  margin-right: 30px;
+}
+
 .home-container {
   background-color: whitesmoke;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  height: 100vh;
 }
 
 .home {
@@ -19,21 +21,21 @@ h3{
   padding: 40px;
 }
 
-.list-group-item{
+.list-group-item {
   border-radius: 10px;
 }
 
 .todoTask {
   transition: 0.5s;
   margin-bottom: 12px;
-  border-left: solid #FFB8D6 6px ;
+  border-left: solid #ffb8d6 6px;
   box-shadow: 1px 1px 1px 0px rgba(0, 0, 0, 0.4);
   word-wrap: break-word;
 }
 
 .inProgTask {
   margin-bottom: 12px;
-  border-left: solid #B49EFF 6px ;
+  border-left: solid #b49eff 6px;
   box-shadow: 1px 1px 1px 0px rgba(0, 0, 0, 0.4);
   word-wrap: break-word;
   transition: 0.5s;
@@ -41,7 +43,7 @@ h3{
 
 .revTask {
   margin-bottom: 12px;
-  border-left: solid #FFCB9E 6px ;
+  border-left: solid #ffcb9e 6px;
   box-shadow: 1px 1px 1px 0px rgba(0, 0, 0, 0.4);
   word-wrap: break-word;
   transition: 0.5s;
@@ -49,15 +51,15 @@ h3{
 
 .checkTask {
   margin-bottom: 12px;
-  border-left: solid #78E9FF 6px ;
+  border-left: solid #78e9ff 6px;
   box-shadow: 1px 1px 1px 0px rgba(0, 0, 0, 0.4);
   word-wrap: break-word;
   transition: 0.5s;
 }
 
-.doneTask{
+.doneTask {
   margin-bottom: 12px;
-  border-left: solid #4BFF8E 6px ;
+  border-left: solid #4bff8e 6px;
   box-shadow: 1px 1px 1px 0px rgba(0, 0, 0, 0.4);
   word-wrap: break-word;
   transition: 0.5s;
@@ -67,29 +69,29 @@ h3{
   display: flex;
 }
 
-.taskColumn{
-  background-color: rgba(141,216,248, 0.15);
+.taskColumn {
+  background-color: rgba(141, 216, 248, 0.15);
   box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.4) inset;
   border-radius: 15px;
   height: 680px;
 }
-.todo:hover h3{
-  color:#FFB8D6;
+.todo:hover h3 {
+  color: #ffb8d6;
 }
-.inProg:hover h3{
-  color:#B49EFF;
+.inProg:hover h3 {
+  color: #b49eff;
 }
-.rev:hover h3{
-  color:#FFCB9E;
+.rev:hover h3 {
+  color: #ffcb9e;
 }
-.check:hover h3{
-  color:#78E9FF;
+.check:hover h3 {
+  color: #78e9ff;
 }
-.done:hover h3{
-  color:#4BFF8E;
+.done:hover h3 {
+  color: #4bff8e;
 }
 
-#taskCol{
+#taskCol {
   text-align: center;
 }
 
@@ -97,7 +99,7 @@ h3{
   height: 600px;
 }
 
-.btnTask{
+.btnTask {
   border-radius: 50px;
   width: 40px;
   height: 40px;
@@ -105,14 +107,14 @@ h3{
   box-shadow: 1px 1px 1px 0px rgba(0, 0, 0, 0.4);
 }
 
-.btnsTask{
+.btnsTask {
   position: absolute;
   margin: -12px 0px 0px 140px;
   opacity: 0%;
   z-index: 20;
 }
 
-.todoTask:hover > .btnsTask{
+.todoTask:hover > .btnsTask {
   animation: blurIn 0.5s forwards ease-in-out;
 }
 .todoTask:hover {
@@ -120,7 +122,7 @@ h3{
   margin-bottom: 35px;
 }
 
-.inProgTask:hover > .btnsTask{
+.inProgTask:hover > .btnsTask {
   animation: blurIn 0.8s forwards ease-in-out;
 }
 .inProgTask:hover {
@@ -128,7 +130,7 @@ h3{
   margin-bottom: 35px;
 }
 
-.revTask:hover > .btnsTask{
+.revTask:hover > .btnsTask {
   animation: blurIn 0.8s forwards ease-in-out;
 }
 .revTask:hover {
@@ -136,7 +138,7 @@ h3{
   margin-bottom: 35px;
 }
 
-.checkTask:hover > .btnsTask{
+.checkTask:hover > .btnsTask {
   animation: blurIn 0.8s forwards ease-in-out;
 }
 .checkTask:hover {
@@ -144,7 +146,7 @@ h3{
   margin-bottom: 35px;
 }
 
-.doneTask:hover > .btnsTask{
+.doneTask:hover > .btnsTask {
   animation: blurIn 0.8s forwards ease-in-out;
 }
 .doneTask:hover {
@@ -153,70 +155,70 @@ h3{
 }
 
 @keyframes blurIn {
-  from {opacity: 0%;}
-  to {opacity: 100%;}
+  from {
+    opacity: 0%;
+  }
+  to {
+    opacity: 100%;
+  }
 }
 
-.add-todo-button{
+.add-todo-button {
   text-align: left;
-  color:blanchedalmond;
+  color: blanchedalmond;
   width: 50px;
   height: 50px;
   top: 720px;
   left: 130px;
   position: absolute;
   overflow: hidden;
-  border-radius: 50px;  
+  border-radius: 50px;
   box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.4);
-  transition: all 0.25s cubic-bezier(0.310, -0.105, 0.430, 1.400);
+  transition: all 0.25s cubic-bezier(0.31, -0.105, 0.43, 1.4);
   transition-delay: 0.3s;
 }
 
-.addtaskIcon{
+.addtaskIcon {
   margin-top: 2px;
   margin-left: -2px;
 }
-.add-todo-button:hover{
+.add-todo-button:hover {
   width: 160px;
 }
-.add-todo-button:hover span::before{
+.add-todo-button:hover span::before {
   font-size: 20px;
   font-weight: bold;
   word-wrap: break-word;
   content: " Add ToDo";
 }
 
-
-.logout-button{
+.logout-button {
   text-align: right;
-  color:blanchedalmond;
+  color: blanchedalmond;
   width: 50px;
   height: 50px;
   top: 735px;
   right: 160px;
   position: absolute;
   overflow: hidden;
-  border-radius: 50px;  
+  border-radius: 50px;
   box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.4);
-  transition: all 0.25s cubic-bezier(0.310, -0.105, 0.430, 1.400);
+  transition: all 0.25s cubic-bezier(0.31, -0.105, 0.43, 1.4);
   transition-delay: 0.3s;
 }
-.logoutIcon{
+.logoutIcon {
   margin-top: 2px;
   margin-left: -6px;
 }
-.logout-button:hover{
+.logout-button:hover {
   width: 140px;
 }
-.logout-button:hover span::before{
+.logout-button:hover span::before {
   font-size: 20px;
   font-weight: bold;
   word-wrap: break-word;
   content: "Logout ";
 }
-.logout-button span{
+.logout-button span {
   padding-right: 10px;
 }
-
-
-
