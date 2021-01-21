@@ -11,6 +11,7 @@ driver = webdriver.Chrome(ChromeDriverManager().install(), options=chrome_option
 
 
 def login(without_close):
+
   driver.get("http://localhost:8080/login")
   sleep(3)
   email_input =  driver.find_element_by_id('exampleInputEmail1')
@@ -27,7 +28,6 @@ def login(without_close):
   sleep(3)
   success_page = "http://localhost:8080/"
 
-  print(driver.current_url)
   if(without_close == False):
     if(driver.current_url == success_page):
       print('Login Testi Basarili')
@@ -58,7 +58,7 @@ def register():
 
   name_input.send_keys('umut')
   last_name_input.send_keys('bozdaG')
-  email_input.send_keys('helloqe@hotmail.com')
+  email_input.send_keys('deneme6@hotmail.com')
   password_input_1.send_keys('deneme123')
   password_input_2.send_keys('deneme123')
 
@@ -72,7 +72,6 @@ def register():
   sleep(3)
   columns = driver.find_elements_by_class_name('column')
   sleep(3)
-  print(columns)
   if(len(columns) > 0):
     print('Register testi Başarılı')
   else:
@@ -80,9 +79,9 @@ def register():
   driver.close()
 
 def add_task():
+
   login(without_close=True)
-  sleep(3)
-  print('add task here')
+  sleep(8)
   add_task_btn = driver.find_element_by_id('add-task-btn')
 
   add_task_btn.click()
@@ -106,6 +105,6 @@ def add_task():
 
 
 
-# login()
-# register()
+login(without_close=False)
+register()
 add_task()
