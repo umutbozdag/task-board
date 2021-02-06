@@ -1,6 +1,6 @@
 # Postit-TaskBoard
 
-Postit is a task board work planner. Web application is written in Vue. 
+Postit is a task board work planner. Web application written in Vue. 
 
 > This app is made for Software Testing course final project with /umutbozdag. I took part at Front-End design.
 
